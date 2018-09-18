@@ -1,29 +1,4 @@
-'''
-while Victory er ekki satt
-
-Forritið finnur hvar hann er
-Forritið finnur hvaða áttir eru í boði frá staðsetningu L
-L er gefið upp hvaða áttir eru í boði.
-L velur átt
-
-*Endurtekning
-
-Forritið reiknar út nýja staðsetningu L 
-Forritið gefur L hvaða áttir eru í boði
-L velur átt
-
-*Endurtekning*
-
-Ef staðsetningin er 3,1 þá er Victory satt
-'''
-
-
-victory = False
-x = 1
-y = 1
-
-
-while not victory:
+def check_print (x,y):
     valid_directions = ""
     valid_print = ""
 
@@ -91,6 +66,33 @@ while not victory:
             west_print = " or (W)est"
         valid_print += west_print
     
+    return valid_print, valid_directions
+
+def change_value(direction,x,y):
+    if direction == "n":
+        y += 1
+    if direction == "e":
+        x += 1
+    if direction == "s":
+        y -= 1
+    if direction == "w":
+        x -= 1
+    
+    return x,y
+
+
+victory = False
+x = 1
+y = 1
+
+
+while not victory:
+    valid_directions = ""
+    valid_print = ""
+    number = len(valid_directions)
+
+    valid_print,valid_directions = check_print(x,y)
+    
     
     options = ""
     options_print = "You can travel: "
@@ -102,14 +104,7 @@ while not victory:
         print("Not a valid direction!")
     
     else:
-        if direction == "n":
-            y += 1
-        if direction == "e":
-            x += 1
-        if direction == "s":
-            y -= 1
-        if direction == "w":
-            x -= 1
+        x,y = change_value(direction,x,y)
 
 
     if x == 3 and y == 1:
